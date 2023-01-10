@@ -5,7 +5,7 @@ from smb.SMBConnection import SMBConnection
 
 # Connect to the Windows share network directory
 server_name = "192.168.10.236"
-user_name = "galtamirano"
+user_name = "galtamirano@central"
 password = "Juanita7$"
 host = "induccion-colaboradores"
 remote_host = "file00.grupo-gestion.com.ar"
