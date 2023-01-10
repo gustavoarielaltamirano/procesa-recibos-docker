@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+
+  indentify:
+    image: python:3.9-slim
+    build: .
+    restart: always
+    container_name: indentify
+    volumes:
+      - ./procesos:/app/procesos
+      - ./resultados:/app/resultados
+    command: ['python', '/app/main.py']
