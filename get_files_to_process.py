@@ -13,7 +13,7 @@ domain = "central"
 use_ntlm_v2 = True
 
 client = SMBConnection(user_name, password, host, remote_host, domain, use_ntlm_v2=use_ntlm_v2)
-client.connect(server_name)
+client.connect(server_name, 139)
 
 # Define share network dir for ZIP process
 NET_WIN_DIR = "GrupoDoc\\Documentos Compartidos\\BOTSRECIBOSGG"
