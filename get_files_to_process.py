@@ -5,10 +5,14 @@ from smb.SMBConnection import SMBConnection
 
 # Connect to the Windows share network directory
 server_name = "192.168.10.236"
-user_name = "galtamirano@central"
+user_name = "galtamirano"
 password = "Juanita7$"
+host = "induccion-colaboradores"
+remote_host = "file00.grupo-gestion.com.ar"
+domain = "central"
+use_ntlm_v2 = True
 
-client = SMBConnection(user_name, password, "python", server_name)
+client = SMBConnection(user_name, password, host, remote_host, domain, use_ntlm_v2=use_ntlm_v2)
 client.connect(server_name)
 
 # Define share network dir for ZIP process
