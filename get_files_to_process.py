@@ -12,7 +12,7 @@ remote_host = "file00.grupo-gestion.com.ar"
 domain = "central"
 use_ntlm_v2 = True
 
-client = SMBConnection(user_name, password  domain, use_ntlm_v2=use_ntlm_v2)
+client = SMBConnection(user_name, password, domain, use_ntlm_v2=use_ntlm_v2)
 client.connect(ip=server_name, port=445, sock_family=None, timeout=60)
 
 # Define share network dir for ZIP process
