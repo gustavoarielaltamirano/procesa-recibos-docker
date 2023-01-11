@@ -7,7 +7,7 @@ from delete_file import del_folder_contain
 from capture_pdf_data import capture_pdf_data
 from conn_aws import search_record
 from filename_reasign import filename_reasign
-from get_files_to_process import get_files
+
 file_to_process = ''
 
 def start_process(dir):
