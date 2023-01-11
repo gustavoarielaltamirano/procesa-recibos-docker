@@ -41,7 +41,10 @@ file_name = "/recibos.zip"
 
 def get_files():
 
-    shutil.copyfile(src + file_name, dst + file_name)
+    try:
+        shutil.copyfile(src + file_name, dst + file_name)
+    except Exception as e:
+        print(e)
 
     # Pre annotate for type-hinting SharedFile object
     # item: SharedFile
