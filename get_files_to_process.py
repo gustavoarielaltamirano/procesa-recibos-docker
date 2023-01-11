@@ -32,7 +32,7 @@ from smb.SMBConnection import SMBConnection
     # https://pysmb.readthedocs.io/en/latest/api/smb_SMBConnection.html#smb.SMBConnection.SMBConnection.listPath
     # listSharedFileObj = smbconn.listPath("GrupoDoc", "/Documentos Compartidos/BOTSRECIBOSGG")
 
-src = '\\\\192.168.10.236\grupodoc\Documentos Compartidos\BOTSRECIBOSGG\recibos.zip'
+src = '\\\\192.168.10.236\grupodoc\Documentos Compartidos\BOTSRECIBOSGG\\recibos.zip'
 dst = './resultados/recibos.zip'
 
 def get_files():
