@@ -16,9 +16,6 @@ def start_process(dir):
 
         current_path = os.getcwd()
 
-        # Get zip from windows share network GrupoDoc\\Documentos Compartidos\BOTSRECIBOSGG
-        get_files()
-
         # Find zip files into "resultado" directory
         file_to_process = find_zip_files(dir)
 
