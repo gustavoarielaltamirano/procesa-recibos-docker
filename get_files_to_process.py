@@ -35,9 +35,9 @@ from smb.SMBConnection import SMBConnection
 # src = '\\\\192.168.10.236\grupodoc\Documentos Compartidos\BOTSRECIBOSGG\\recibos.zip'
 # dst = './resultados/recibos.zip'
 
-src = "//192.168.10.236/grupodoc/Documentos Compartidos/BOTSRECIBOSGG"
-dst = "./resultados"
-file_name = "/recibos.zip"
+src = "\\\\192.168.10.236\\grupodoc\\Documentos Compartidos\\BOTSRECIBOSGG\\"
+dst = "./resultados/"
+file_name = "recibos.zip"
 
 def get_files():
 
