@@ -20,22 +20,23 @@ def search_record(cuit, recnros):
     # Empty dataframe to capture all records from AWS
     df = pd.DataFrame()
 
-    cursor = conn.cursor()
-
-    recs = ','.join(['%s'] * len(recnros))
-
-    # Convert string element list to number
-    recnros = [int(x) for x in recnros]
-
-    # print(recnros)
-
-    query = f'select c.cuit, r.clearingType, r.idCompany, r.month, r.year, r.receiptNumber, r.firstName, r.lastName, r.cuil, r.costCenter from receipt_user r join company c on c.idCompany = r.idCompany where c.cuit = {cuit} and r.receiptNumber in ({recs})'
-
     try:
+
+        cursor = conn.cursor()
+
+        recs = ','.join(['%s'] * len(recnros))
+
+        # Convert string element list to number
+        recnros = [int(x) for x in recnros]
+
+        # print(recnros)
+
+        query = f'select c.cuit, r.clearingType, r.idCompany, r.month, r.year, r.receiptNumber, r.firstName, r.lastName, r.cuil, r.costCenter from receipt_user r join company c on c.idCompany = r.idCompany where c.cuit = {cuit} and r.receiptNumber in ({recs})'
 
         cursor.execute(query, recnros)
 
     except pymysql.err.OperationalError as e:
+        print('Error recibido: ', e.args[0], e.args[1])
         if e.args[0] == 2006 or e.args[0] == 2013:
             print("connection reset by peer, reintentando conectar en 60seg")
             time.sleep(60)
