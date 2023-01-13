@@ -1,5 +1,6 @@
 import pymysql
 import pandas as pd
+import time
 
 # Config variables
 endpoint = 'recibos.cnz0edophtit.us-east-2.rds.amazonaws.com'
@@ -30,7 +31,20 @@ def search_record(cuit, recnros):
 
     query = f'select c.cuit, r.clearingType, r.idCompany, r.month, r.year, r.receiptNumber, r.firstName, r.lastName, r.cuil, r.costCenter from receipt_user r join company c on c.idCompany = r.idCompany where c.cuit = {cuit} and r.receiptNumber in ({recs})'
 
-    cursor.execute(query, recnros)
+    try:
+
+        cursor.execute(query, recnros)
+
+    except pymysql.err.OperationalError as e:
+        if e.args[0] == 2006 or e.args[0] == 2013:
+            print("connection reset by peer, reintentando conectar en 60seg")
+            time.sleep(60)
+            cursor.execute(query, recnros)
+        else:
+            raise e
+    finally:
+        # close the connection
+        conn.close()
 
     rows = cursor.fetchall()
 

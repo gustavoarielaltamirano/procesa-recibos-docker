@@ -18,8 +18,9 @@ def filename_reasign(dataAws):
                 source_file_path = os.path.join(root, file)
 
                 # Split filename to get receiptNumber and convert to int
-                file_split = file.split('.')
+                file_split = file.split('.p')
                 name_split = file_split[0].split('_')
+
                 receiptNumber = int(name_split[4])
 
                 # Locate cuil, year, month, clearingType in dataframe
