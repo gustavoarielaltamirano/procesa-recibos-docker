@@ -35,23 +35,29 @@ def search_record(cuit, recnros):
 
         cursor.execute(query, recnros)
 
+        rows = cursor.fetchall()
+
+        # Convert tuple to pandas dataframe
+        if len(rows) > 0:
+            df = pd.DataFrame(rows, columns=['cuit', 'clearingType', 'idCompany', 'month', 'year', 'receiptNumber', 'firstName', 'lastName', 'cuil', 'costCenter'])
     except pymysql.err.OperationalError as e:
         print('Error recibido: ', e.args[0], e.args[1])
         if e.args[0] == 2006 or e.args[0] == 2013:
             print("connection reset by peer, reintentando conectar en 60seg")
             time.sleep(60)
             cursor.execute(query, recnros)
+            rows = cursor.fetchall()
+
+            # Convert tuple to pandas dataframe
+            if len(rows) > 0:
+                df = pd.DataFrame(rows, columns=['cuit', 'clearingType', 'idCompany', 'month', 'year', 'receiptNumber', 'firstName', 'lastName', 'cuil', 'costCenter'])
+
         else:
             raise e
-    finally:
-        # close the connection
-        conn.close()
+    except Exception as e:
+        print('Error general capturado: ', e.args[0], e.args[1])
 
-    rows = cursor.fetchall()
 
-    # Convert tuple to pandas dataframe
-    if len(rows) > 0:
-        df = pd.DataFrame(rows, columns=['cuit', 'clearingType', 'idCompany', 'month', 'year', 'receiptNumber', 'firstName', 'lastName', 'cuil', 'costCenter'])
 
     cursor.close()
 
